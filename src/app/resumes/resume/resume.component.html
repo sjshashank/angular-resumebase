@@ -1,0 +1,181 @@
+<head>
+<style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+
+  .social-icon {
+    margin  : 20px 0;
+    padding : 0;
+    display : block;
+    }
+
+.social-icon li {
+    display : inline-block;
+    margin  : 0 2px;
+    }
+
+.social-icon li a {
+    display       : block;
+    font-size     : 20px;
+    color         : #333333;
+    width         : 34px;
+    height        : 34px;
+    line-height   : 33px;
+    text-align    : center;
+    border-radius : 2px;
+    border        : 2px solid #eeeeee;
+    }
+
+.social-icon li a:hover {
+    border-color : #cccccc;
+    }
+  </style>
+</head>
+<div style="background-color: #737373; margin-top: -30px">
+  <div class="container" style="margin-top:80px; background-color: white">
+    <div class="row">
+      <div class="col-sm-4" style="background-color: #e6e6e6;">
+        <div style="margin: 8px">
+          <div [ngSwitch]="gender" style="margin-top: 20px; height: 300px; background: #aaa">
+            <img src="../../../assets/img_avatar.png" *ngSwitchCase="'Male'">
+            <img src="../../../assets/img_avatar2.png" *ngSwitchCase="'Female'">
+            <img src="../../../assets/img_avatar3.png" *ngSwitchCase="'Other'">
+            <img src="../../../assets/img_avatar.png" *ngSwitchDefault>
+          </div>
+          <div style="margin-top: 40px; font-weight:bold; font-size: 30px; color: #1a1a1a">
+            {{name}}
+          </div>
+          <div style="color: #737373; font-size: 19px">
+            <span style="font-weight: 600">{{company}}</span> <br>
+            {{domain}}
+          </div>
+          <!-- <div style="margin-top: 20px; color: #737373">
+            About Me:
+          </div> -->
+          <div style="margin-top: 30px;">
+            <ul class="social-icon" >
+                <li><a href="https://www.fb.com" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div style="margin: 8px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">About:</div>
+            <!-- <hr style="margin-top: 1px"> -->
+            <!-- About address domain technology experience mobile email download resume -->
+            {{about}} <br/><br/>
+            <div class="row">
+              <div class="col-md-5">
+                    <span style="font-weight: bold">Address: </span>
+                </div>
+                <div class="col-md-6">
+                    {{address}}
+                </div>
+              <div class="col-md-5">
+                    <span style="font-weight: bold">Work Experience: </span>
+                </div>
+                <div class="col-md-6">
+                    {{experience}} Yrs.
+                </div>
+                <div class="col-md-5">
+                    <span style="font-weight: bold">Current Technology: </span>
+                </div>
+                <div class="col-md-6">
+                    {{technology}}
+                </div>
+              <div class="col-md-5">
+                    <span style="font-weight: bold">Contact: </span>
+                </div>
+                <div class="col-md-6">
+                    {{contact}}
+                </div>
+              <div class="col-md-5">
+                    <span style="font-weight: bold">Email: </span>
+                </div>
+                <div class="col-md-6">
+                    {{email}}
+                </div>
+            </div>
+          </section>
+          <hr style="margin-left: -23px; margin-right: -23px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">Experience:</div>
+            <!-- <hr style="margin-top: 1px"> -->
+            <!-- <br> -->
+            <ng-container *ngFor="let experience of experienceArray">
+              <br>
+              <span style="color: #737373; font-size: 14px">{{experience.exfrom}} - {{experience.exto}}</span><br>
+              <span style="font-weight:bold; font-size: 18px">{{experience.exdesignation | uppercase}}</span><br>
+              <span style="font-weight: 600;">{{experience.excompany}}</span><br>
+              {{experience.exdetails}}
+              <br><br>
+            </ng-container>
+          </section>
+          <hr style="margin-left: -23px; margin-right: -23px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">Skills:</div>
+            <!-- <hr style="margin-top: 1px"> -->
+            {{skills}}
+          </section>
+          <hr style="margin-left: -23px; margin-right: -23px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">Projects:</div>
+            <!-- <hr style="margin-top: 1px"> -->
+            <!-- name technology tools details -->
+            <!-- <br> -->
+            <ng-container *ngFor="let project of projectsArray">
+              <br>
+              <span style="font-weight:bold; font-size: 18px">{{project.pname | uppercase}}</span><br>
+              <div class="row">
+                <div class="col-md-2">
+                  <span style="font-weight: 600">Technology: </span>
+                </div>
+                <div class="col-md-6">
+                  {{project.ptechnology}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                  <span style="font-weight: 600">Tools: </span>
+                </div>
+                <div class="col-md-6">
+                  {{project.ptools}}
+                </div>
+              </div>
+              {{project.pdetails}}
+              <br><br>
+            </ng-container>
+          </section>
+          <hr style="margin-left: -23px; margin-right: -23px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">Education:</div>
+            <!-- <hr style="margin-top: 1px;"> -->
+            <!-- degree place from to score -->
+            <ng-container *ngFor="let education of educationArray">
+              <br>
+              <span style="color: #737373; font-size: 14px">{{education.edfrom}} - {{education.edto}}</span><br>
+              <span style="font-weight:bold; font-size: 18px">{{education.eddegree | uppercase}}</span><br>
+              <span style="font-weight: 600;">{{education.edname}}</span><br>
+              <span style="font-weight: 600">Score: </span>{{education.edscore}}
+              <br><br>
+            </ng-container>
+          </section>
+          <hr style="margin-left: -23px; margin-right: -23px">
+          <section style="margin: 50px">
+            <div style="color: #cccccc; font-size: 30px; font-weight: bold">Interests:</div>
+            <!-- <hr style="margin-top: 1px"> -->
+            {{interests}}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="bg-white">
+  <div class="container" style="margin-top: 50px">
+    <mat-toolbar>
+      <span class="fill-remaining-spaces"></span>
+      <span style="margin-left: 45%">List of Resumes</span>
+      <span class="fill-remaining-spaces"></span>
+    </mat-toolbar><hr>
+    <div class="serch-div">
+      <mat-form-field class="search-form-field">
+        <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="filterResult()">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="listData" matSort>
+        <ng-container matColumnDef="fullName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Full Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="experience">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Experience</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.experience}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="domain">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.domain}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="technology">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Technology</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.technology}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" type="button" (click)="navigateTo(element.$key)">Visit Profile >></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<!-- <h1 class="header">Create an account with Firebase or Social Providers</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form [formGroup]="registerForm">
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" formControlName="password">
+          <label class="error">{{errorMessage}}</label>
+          <label class="success">{{successMessage}}</label>
+        </div>
+        <button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-default">Register</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="button" class="btn btn-primary btn-block" (click)="tryFacebookLogin()">Register with Facebook</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="button" class="btn btn-danger btn-block" (click)="tryGoogleLogin()">Register with Google</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="button" class="btn btn-info btn-block" (click)="tryTwitterLogin()">Register with Twitter</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </div>
+</div> -->
+
+<div class="formBody" style="margin-top: 50px">
+  <div class="row" style="margin-right: 0%;">
+    <div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign Up</h5>
+          <form class="form-signin" [formGroup]="registerForm">
+            <div class="form-label-group form-group">
+              <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+              <label for="inputEmail">Email address</label> -->
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Email address</mat-label>
+                <input matInput placeholder="Email address" formControlName="email" required autofocus>
+              </mat-form-field>
+            </div>
+
+            <div class="form-label-group form-group">
+              <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <label for="inputPassword">Password</label> -->
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" type="password" formControlName="password" required>
+                <mat-hint class="error">{{errorMessage}}</mat-hint>
+                <mat-hint class="success">{{successMessage}}</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <!-- <div class="custom-control custom-checkbox mb-3">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Remember password</label>
+            </div> -->
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="tryRegister(registerForm.value)">Sign Up</button>
+          
+            <hr class="my-4">
+            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="tryGoogleLogin()"><i class="fab fa-google mr-2"></i> Sign Up with Google</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" (click)="tryFacebookLogin()"><i class="fab fa-facebook-f mr-2"></i> Sign Up with Facebook</button>
+            <br>
+            <p>Already have an account? <a href="/login">Login</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

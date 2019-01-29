@@ -1,0 +1,70 @@
+<head>
+    <style>
+        .header-image {
+            margin-bottom: 0px;
+            margin-right: -100px;
+            height: 420px;
+            width: 100%;
+            background-size: cover;
+            background-position: 50% 50%;   }
+    </style>
+</head>
+<div class="bg-white"> <!-- turn background to white -->
+    <header>
+        <div class="header-image shadow-lg p-3 mb-5 bg-white" style="background-image: url(../../../../../assets/header.png)"></div>
+    </header>
+    <div class="container">
+        <h2 class="my-4">Resume Cards:</h2>
+        <hr/>
+        <!-- <resume-card *[resume] = "resume1"></resume-card> -->
+        <div class="row">
+            <ng-container *ngFor="let resume of resumeArray">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 19rem; margin: 20px; margin-left: 40px;">
+                    <div class="card-body">
+                    <h5 class="card-title">{{resume.name}}</h5>
+                    <div class="row">
+                    <div class="col"><h6 class="card-subtitle" style="color: #0057ff">{{resume.company}}</h6></div>
+                    <div class="col" style="float:right;"><h6 class="card-subtitle" style="color: #00cc00">Exp: {{resume.experience}} Yrs.</h6></div>
+                    </div><br/>
+                    <p class="card-text text-truncate">{{resume.about}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-truncate"><span class="text-monospace" style="font-weight:bold">Domain : </span>{{resume.domain}}</li>
+                    <li class="list-group-item text-truncate"><span class="text-monospace" style="font-weight:bold">Technology : </span>{{resume.technology}}</li>
+                    <li class="list-group-item text-truncate"><span class="text-monospace" style="font-weight:bold">Skills : </span>{{resume.skills}}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a [routerLink]="[ '/resumes', resume.$key ]"class="btn btn-primary" >Visit Profile</a>
+                    </div>
+
+                    <!-- (click)="resumeKey(resume.$key) -->
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="footer">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 py-5" style="text-align: center">
+                        <a href="https://github.com/sjshashank/angular-resumebase" style="color: white" target="_blank">
+                            <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a href="https://www.facebook.com/sjshankey92" style="color: white" target="_blank">
+                            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a href="https://twitter.com/sjshankey" style="color: white" target="_blank">
+                            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a href="https://plus.google.com/108778318212511895648" style="color: white" target="_blank">
+                            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                        <a style="color: white" target="_blank">
+                            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

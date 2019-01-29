@@ -1,0 +1,71 @@
+.header {
+    /* background-color: #66a3ff; */
+    height: 300px;
+}
+
+.header-row-1 {
+    margin-left: 0%;
+    margin-right: 0%;
+    height: 150px;
+    background-color: #66a3ff;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.header-row-2 {
+    margin-left: 0%;
+    margin-right: 0%;
+    height: 150px;
+    color: #66a3ff;
+    font-size: 22px;
+    font-weight: 500;
+    background-color: white;
+}
+
+.header-col-1 {
+    position: relative;
+    height: 150px;
+    text-align: end;
+    margin-right: 200px;
+}
+
+.header-text {
+    position: absolute;
+    bottom: 0;
+    /* right: 15px; */
+}
+
+.profileImage {
+    margin-top: -250px;
+    margin-left: 43%;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px
+}
+
+.profileBody {
+    background-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.techImg {
+    text-align: center;
+}
+
+div > div > img {
+    height: 100px;
+    width: auto;
+}
+
+.footer {
+    height: 150px;
+    background-color: #66a3ff;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+ }

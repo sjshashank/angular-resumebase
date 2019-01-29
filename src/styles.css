@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+body {
+    /* background-color: #eaf1f1; */
+    /* background-color: #737373; */
+
+}
+
+.pointable {
+    cursor: pointer;
+}
+
+button {
+    color: #0057ff;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+

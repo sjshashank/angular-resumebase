@@ -1,0 +1,326 @@
+<div class="bg-white">
+  <div class="container" style="margin-top: 50px">
+    <mat-horizontal-stepper [linear]="false" #stepper>
+      <mat-step [stepControl]="service.firstFormGroup">
+        <form [formGroup]="service.firstFormGroup" (submit)="onFirstFormSubmit()">
+          <ng-template matStepLabel>Basic Details</ng-template>
+          <mat-grid-list cols="2" rowHeight="420px">
+            <mat-grid-tile>
+              <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field>
+                  <input matInput placeholder="Full Name" formControlName="fullName" required>
+                  <mat-error>Name is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <textarea matInput placeholder="About Yourself" formControlName="about" required></textarea>
+                  <mat-error>About Yourself is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Address" formControlName="address" required>
+                  <mat-error>Address is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Mobile Number" formControlName="contact" required>
+                  <mat-error *ngIf="service.firstFormGroup.controls['contact'].errors?.required">Mobile Number is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="service.firstFormGroup.controls['contact'].errors?.minlength">Mobile Number <strong>should be 10 characters long</strong></mat-error>
+                  <mat-error *ngIf="service.firstFormGroup.controls['contact'].errors?.maxlength">Mobile Number <strong>should be 10 characters long</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Email" formControlName="email" required>
+                  <mat-error *ngIf="service.firstFormGroup.controls['email'].errors?.required">Email is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="service.firstFormGroup.controls['email'].errors?.email"><strong>Invalid</strong> email address</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Interests" formControlName="interests" required>
+                  <mat-error>Interests is <strong>required</strong></mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="controles-container">
+                <br>
+                <div class="add-bottom-padding">Gender: 
+                  <mat-radio-group formControlName="gender">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                    <mat-radio-button value="Others">Others</mat-radio-button>
+                  </mat-radio-group>
+                </div><br>
+                <mat-form-field style="margin-top:12px">
+                  <input matInput type="number" placeholder="Experience (e.g, Enter  1.5 for 1 years 6 months)" formControlName="experience" required>
+                  <mat-error *ngIf="service.firstFormGroup.controls['experience'].errors?.required">Experience is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="service.firstFormGroup.controls['experience'].errors?.min">Experience <strong>cannot be negative</strong></mat-error>
+                  <mat-error *ngIf="service.firstFormGroup.controls['experience'].errors?.max">Experience <strong>cannot be more than 50</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Current Company" formControlName="company" required>
+                  <mat-error>Current Company is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Domain" formControlName="domain" required>
+                  <mat-error>Domain is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Current Technology" formControlName="technology" required>
+                  <mat-error>Current Technology is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Skills" formControlName="skills" required>
+                  <mat-error>Skills is <strong>required</strong></mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div class="button-row" style="text-align:center;">
+            <button mat-raised-button matStepperNext color="primary" type="submit" [disabled]="service.firstFormGroup.invalid">Save and Continue</button>
+            <button mat-raised-button color="warn" style="width: 100px;" type="reset" (click)="resetForm(this.service.firstFormGroup)">Reset</button>
+          </div><br><br>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="service.secondFormGroup">
+        <form [formGroup]="service.secondFormGroup" (submit)="onSecondFormSubmit()">
+          <ng-template matStepLabel>Education Details</ng-template>
+          <mat-grid-list cols="3" rowHeight="340px">
+            <mat-grid-tile cols="1">
+              <div class="controles-container">
+                <input type="hidden" formControlName="$edkey">
+                <mat-form-field>
+                  <input matInput placeholder="Degree" formControlName="eddegree" required>
+                  <mat-error>Degree is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="College/Institute" formControlName="edname" required>
+                  <mat-error>College/Institute is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="From" formControlName="edfrom" required>
+                  <mat-error>From is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="To" formControlName="edto" required>
+                  <mat-error>To is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Score" formControlName="edscore" required>
+                  <mat-error>Score is <strong>required</strong></mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <div class="controles-container">
+                <div class="mat-elevation-z8">
+                  <mat-table [dataSource]="listEducationData">
+                    <ng-container matColumnDef="eddegree">
+                      <mat-header-cell *matHeaderCellDef>Degree</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.eddegree}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="edname">
+                      <mat-header-cell *matHeaderCellDef>School/College</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.edname}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="edfrom">
+                      <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.edfrom}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="edto">
+                      <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.edto}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="edscore">
+                      <mat-header-cell *matHeaderCellDef>Score</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.edscore}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        <button mat-icon-button type="button" (click)="service.secondFormGroup.setValue(row)"><mat-icon>launch</mat-icon></button>
+                        <button mat-icon-button type="button" color="warn" (click)="onDelete('education', row.$edkey)"><mat-icon>delete_outline</mat-icon></button>
+                      </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedEducationColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedEducationColumns;"></mat-row>
+                  </mat-table>
+                </div>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div class="button-row">
+            <button mat-raised-button color="accent" type="submit" [disabled]="service.secondFormGroup.invalid" (click)="onSecondFormSubmit(); resetForm(this.service.secondFormGroup)">Add More</button>
+            <button mat-raised-button matStepperNext color="primary" type="submit" [disabled]="service.secondFormGroup.invalid">Save and Continue</button>
+            <button mat-raised-button color="warn" style="width: 100px;" type="reset" (click)="resetForm(this.service.secondFormGroup)">Reset</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="service.thirdFormGroup">
+        <form [formGroup]="service.thirdFormGroup" (submit)="onThirdFormSubmit()">
+          <ng-template matStepLabel>Experience Details</ng-template>
+          <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-tile cols="1">
+              <div class="controles-container">
+                <input type="hidden" formControlName="$exkey">
+                <mat-form-field>
+                  <input matInput placeholder="Company" formControlName="excompany" required>
+                  <mat-error>Company is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Designation" formControlName="exdesignation" required>
+                  <mat-error>Designation is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="From" formControlName="exfrom" required>
+                  <mat-error>From is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="To" formControlName="exto" required>
+                  <mat-error>To is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <textarea matInput placeholder="Details" formControlName="exdetails" required></textarea>
+                  <mat-error>Details is <strong>required</strong></mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <div class="controles-container">
+                <div class="mat-elevation-z8">
+                  <mat-table [dataSource]="listExperienceData">
+                    <ng-container matColumnDef="excompany">
+                      <mat-header-cell *matHeaderCellDef>Company</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.excompany}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="exdesignation">
+                      <mat-header-cell *matHeaderCellDef>Designation</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.exdesignation}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="exfrom">
+                      <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.exfrom}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="exto">
+                      <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.exto}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="exdetails">
+                      <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.exdetails}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        <button mat-icon-button type="button" (click)="service.populateForm(row); service.thirdFormGroup.setValue(row)"><mat-icon>launch</mat-icon></button>
+                        <button mat-icon-button type="button" color="warn" (click)="onDelete('experience', row.$exkey)"><mat-icon>delete_outline</mat-icon></button>
+                      </mat-cell>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="noData">
+                      <mat-footer-cell *matFooterCellDef colspan="6">
+                        No data.
+                      </mat-footer-cell>
+                    </ng-container> -->
+                    <mat-header-row *matHeaderRowDef="displayedExperienceColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedExperienceColumns;"></mat-row>
+                    <!-- <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row> -->
+                  </mat-table>
+                </div>
+                <!-- <table class="table">
+                  <thead>
+                    <th>Company</th>
+                    <th>Designation</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Details</th>
+                    <th></th>
+                  </thead>
+                  <ng-container *ngFor="let experience of experienceArray">
+                    <tr>
+                      <td>{{experience.company}}</td>
+                      <td>{{experience.designation}}</td>
+                      <td>{{experience.from}}</td>
+                      <td>{{experience.to}}</td>
+                      <td>{{experience.details}}</td>
+                      <td>
+                        <button class="btn btn-outline-info">Edit</button>
+                        <button class="btn btn-outline-danger">Delete</button>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </table> -->
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div class="button-row">
+            <button mat-raised-button color="accent" type="submit" [disabled]="service.thirdFormGroup.invalid" (click)="onThirdFormSubmit(); resetForm(this.service.thirdFormGroup)">Add More</button>
+            <button mat-raised-button matStepperNext color="primary" type="submit" [disabled]="service.thirdFormGroup.invalid">Save and Continue</button>
+            <button mat-raised-button color="warn" style="width: 100px;" type="reset" (click)="resetForm(this.service.thirdFormGroup)">Reset</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="service.fourthFormGroup">
+        <form [formGroup]="service.fourthFormGroup" (submit)="onFourthFormSubmit()">
+          <ng-template matStepLabel>Projects Details</ng-template>
+          <mat-grid-list cols="3" rowHeight="350px">
+            <mat-grid-tile cols="1">
+              <div class="controles-container">
+                <input type="hidden" formControlName="$pkey">
+                <mat-form-field>
+                  <input matInput placeholder="Project Name" formControlName="pname" required>
+                  <mat-error>Project Name is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Technology Used" formControlName="ptechnology" required>
+                  <mat-error>Technology is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Tools Used" formControlName="ptools" required>
+                  <mat-error>Tools is <strong>required</strong></mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Project Details" formControlName="pdetails" required>
+                  <mat-error>Details is <strong>required</strong></mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+              <div class="controles-container">
+                <div class="mat-elevation-z8">
+                  <mat-table [dataSource]="listProjectsData">
+                    <ng-container matColumnDef="pname">
+                      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.pname}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ptechnology">
+                      <mat-header-cell *matHeaderCellDef>Technology</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.ptechnology}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="ptools">
+                      <mat-header-cell *matHeaderCellDef>Tools</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.ptools}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="pdetails">
+                      <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.pdetails}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                      <mat-cell *matCellDef="let row">
+                        <button mat-icon-button type="button" (click)="service.fourthFormGroup.setValue(row)"><mat-icon>launch</mat-icon></button>
+                        <button mat-icon-button type="button" color="warn" (click)="onDelete('projects', row.$pkey)"><mat-icon>delete_outline</mat-icon></button>
+                      </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedProjectsColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedProjectsColumns;"></mat-row>
+                  </mat-table>
+                </div>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div class="button-row">
+            <button mat-raised-button color="accent" type="submit" [disabled]="service.fourthFormGroup.invalid" (click)="onFourthFormSubmit(); resetForm(this.service.fourthFormGroup)">Add More</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="service.fourthFormGroup.invalid">Save and Continue</button>
+            <button mat-raised-button color="warn" style="width: 100px;" type="reset" (click)="resetForm(this.service.fourthFormGroup)">Reset</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>
