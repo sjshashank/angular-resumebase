@@ -39,7 +39,7 @@
   </div>
 </div> -->
 
-<div class="formBody" style="margin-top: 50px">
+<div class="formBody" style="margin-top: 30px">
   <div class="row" style="margin-right: 0%;">
     <div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
       <div class="card card-signin my-5">
@@ -55,7 +55,7 @@
               </mat-form-field>
             </div>
 
-            <div class="form-label-group form-group">
+            <div class="form-label-group form-group" style="margin-top: -30px">
               <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
               <label for="inputPassword">Password</label> -->
               <mat-form-field appearance="outline" style="width: 100%">
@@ -70,11 +70,11 @@
               <input type="checkbox" class="custom-control-input" id="customCheck1">
               <label class="custom-control-label" for="customCheck1">Remember password</label>
             </div> -->
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="tryRegister(registerForm.value)">Sign Up</button>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" (click)="tryRegister(registerForm.value)" style="margin-top: -15px">Sign Up</button>
           
-            <hr class="my-4">
+            <hr class="my-3">
             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="tryGoogleLogin()"><i class="fab fa-google mr-2"></i> Sign Up with Google</button>
-            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" (click)="tryFacebookLogin()"><i class="fab fa-facebook-f mr-2"></i> Sign Up with Facebook</button>
+            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit" #tooltip="matTooltip" matTooltip="Coming Soon..." matTooltipPosition="right"><i class="fab fa-facebook-f mr-2"></i> Sign Up with Facebook</button>
             <br>
             <p>Already have an account? <a href="/login">Login</a></p>
           </form>
