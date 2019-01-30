@@ -56,7 +56,7 @@ export class CreateResumeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: ResumeService,
+    public service: ResumeService,
     public authService: AuthService,
     private firebaseData: AngularFireDatabase) { }
 

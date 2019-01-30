@@ -19,5 +19,5 @@ export const appRoutes: Routes = [
     { path: 'resumes/new', component: CreateResumeComponent},
     { path: 'resumes', component: ResumeListComponent },
     { path: 'resumes/:$key', component: ResumeComponent},
-    { path: '', redirectTo: '/resumes', pathMatch: 'full'}
+    { path: '', redirectTo: '/login', pathMatch: 'full'}
 ];

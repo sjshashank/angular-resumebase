@@ -15,11 +15,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  createResume() {
+  authenticateRoute(route) {
     this.afAuth.authState.subscribe(user => {        // checking if user logged in
       if (user && user.uid) {
         // console.log(user.uid);
-        this.router.navigate(['/resumes/new']);    // if user logged in then navigate to new resume form
+        this.router.navigate([route]);    // if user logged in then navigate to new resume form
       } else {
         this.router.navigate(['/login']);          // if user not logged in then redirect to login page
       }
